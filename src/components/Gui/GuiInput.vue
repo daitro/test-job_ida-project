@@ -11,7 +11,11 @@
       type="text"
       :placeholder="placeholder"
       :value="value"
+      @input="onInput"
+      @blur="onBlur"
+      @focus="onFocus"
     />
+    <p class="input__text-error" v-if="error">Поле является обязательным</p>
   </div>
 </template>
 
@@ -30,6 +34,21 @@ export default {
     },
     required: {
       type: Boolean,
+    },
+    error: {
+      type: Boolean,
+    },
+  },
+
+  methods: {
+    onInput(event) {
+      this.$emit("input", event.target.value);
+    },
+    onBlur(event) {
+      this.$emit("blur", event.target.value);
+    },
+    onFocus() {
+      this.$emit("focus");
     },
   },
 };

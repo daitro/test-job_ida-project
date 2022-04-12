@@ -3,7 +3,7 @@
     <div class="card-product">
       <img
         class="card-product__img"
-        src="../../public/img/camera.jpg"
+        :src="`/img/${img}.jpg`"
         alt="Изображение"
       />
       <div class="card-product__description">
@@ -25,6 +25,9 @@ export default {
       type: String,
     },
     price: {
+      type: String,
+    },
+    img: {
       type: String,
     },
   },

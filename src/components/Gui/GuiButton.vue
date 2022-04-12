@@ -1,10 +1,19 @@
 <template>
-  <input class="button" type="submit" value="Добавить товар" />
+  <input
+    class="button"
+    :disabled="disabled"
+    type="submit"
+    value="Добавить товар"
+  />
 </template>
 
 <script>
 export default {
-  props: {},
+  props: {
+    disabled: {
+      type: Boolean,
+    },
+  },
 };
 </script>
 

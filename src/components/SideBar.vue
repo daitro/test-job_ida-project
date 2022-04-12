@@ -6,6 +6,10 @@
         :placeholder="nameProduct.placeholder"
         v-model="nameProduct.value"
         :required="nameProduct.requiredField"
+        @input="nameProduct.error = !$event"
+        @blur="nameProduct.error = !nameProduct.value"
+        @focus="nameProduct.error = false"
+        :error="nameProduct.error"
       />
       <GuiTextArea
         :label="descriptionProduct.label"
@@ -18,15 +22,23 @@
         :placeholder="imgProduct.placeholder"
         v-model="imgProduct.value"
         :required="imgProduct.requiredField"
+        @input="imgProduct.error = !$event"
+        @blur="imgProduct.error = !imgProduct.value"
+        @focus="imgProduct.error = false"
+        :error="imgProduct.error"
       />
       <GuiInput
         :label="priceProduct.label"
         :placeholder="priceProduct.placeholder"
         v-model="priceProduct.value"
         :required="priceProduct.requiredField"
+        @input="priceProduct.error = !$event"
+        @blur="priceProduct.error = !priceProduct.value"
+        @focus="priceProduct.error = false"
+        :error="priceProduct.error"
       />
 
-      <GuiButton />
+      <GuiButton :disabled="isSubmitDisabled" />
     </div>
   </section>
 </template>
@@ -44,6 +56,7 @@ export default {
         placeholder: "Введите наименование товара",
         label: "Наименование товара",
         requiredField: true,
+        error: false,
       },
       descriptionProduct: {
         value: "",
@@ -56,14 +69,27 @@ export default {
         placeholder: "Введите ссылку",
         label: "Ссылка на изображение товара",
         requiredField: true,
+        error: false,
       },
       priceProduct: {
         value: "",
         placeholder: "Введите цену",
         label: "Цена товара",
         requiredField: true,
+        error: false,
       },
+      buttonDisabled: true,
     };
+  },
+
+  computed: {
+    isSubmitDisabled() {
+      return (
+        !this.nameProduct.value ||
+        !this.imgProduct.value ||
+        !this.priceProduct.value
+      );
+    },
   },
 
   components: {
