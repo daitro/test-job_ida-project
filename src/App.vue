@@ -1,11 +1,17 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <ProductsPage />
+  </div>
 </template>
 
 <script>
+import ProductsPage from "../src/pages/ProductsPage.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    ProductsPage,
+  },
 };
 </script>
 
