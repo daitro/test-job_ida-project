@@ -28,13 +28,18 @@ export default {
   margin-top: 8px;
   cursor: pointer;
 
+  &:hover {
+    background: #8fc187;
+  }
+
   &[disabled] {
     background: #eeeeee;
     color: #b4b4b4;
-  }
 
-  &:hover {
-    background: #8fc187;
+    &:hover {
+      background: #eeeeee;
+      cursor: default;
+    }
   }
 }
 </style>

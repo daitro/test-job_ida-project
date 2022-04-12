@@ -3,7 +3,7 @@
     <h1 class="header">Добавление продукта</h1>
     <div class="main__container">
       <aside class="main__sidebar">
-        <SideBar />
+        <SideBar :cardProductsList="cardProductsList" />
       </aside>
       <div class="products-list">
         <div class="row">
@@ -14,6 +14,11 @@
             :text="cardProduct.text"
             :price="cardProduct.price"
             :img="cardProduct.img"
+            :showIconDelete="cardProduct.showIconDelete"
+            :cardProductsList="cardProductsList"
+            @mouseover="cardProduct.showIconDelete = true"
+            @mouseleave="cardProduct.showIconDelete = false"
+            @delete="deleteProductCard(cardProduct.id)"
           />
         </div>
       </div>
@@ -30,70 +35,23 @@ export default {
     return {
       cardProductsList: [
         {
-          id: 1,
+          id: 0,
           title: "Наименование товара",
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 2,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 3,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 4,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 5,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 6,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 7,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 8,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
-        },
-        {
-          id: 9,
-          title: "Наименование товара",
-          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-          img: "camera",
+          img: "/img/camera.jpg",
+          showIconDelete: false,
         },
       ],
     };
+  },
+
+  methods: {
+    deleteProductCard(id) {
+      return (this.cardProductsList = this.cardProductsList.filter(
+        (elem) => elem.id !== id
+      ));
+    },
   },
 
   components: {

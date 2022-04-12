@@ -38,7 +38,10 @@
         :error="priceProduct.error"
       />
 
-      <GuiButton :disabled="isSubmitDisabled" />
+      <GuiButton
+        :disabled="isSubmitDisabled"
+        @click.native="addNewProductCard"
+      />
     </div>
   </section>
 </template>
@@ -47,6 +50,7 @@
 import GuiInput from "../components/Gui/GuiInput.vue";
 import GuiTextArea from "../components/Gui/GuiTextArea.vue";
 import GuiButton from "../components/Gui/GuiButton.vue";
+import { nanoid } from "nanoid";
 
 export default {
   data() {
@@ -78,7 +82,6 @@ export default {
         requiredField: true,
         error: false,
       },
-      buttonDisabled: true,
     };
   },
 
@@ -89,6 +92,30 @@ export default {
         !this.imgProduct.value ||
         !this.priceProduct.value
       );
+    },
+  },
+
+  methods: {
+    addNewProductCard() {
+      this.cardProductsList.push({
+        id: nanoid(),
+        title: this.nameProduct.value,
+        text: this.descriptionProduct.value,
+        price: this.priceProduct.value,
+        img: this.imgProduct.value,
+        showIconDelete: false,
+      });
+
+      this.nameProduct.value = "";
+      this.descriptionProduct.value = "";
+      this.imgProduct.value = "";
+      this.priceProduct.value = "";
+    },
+  },
+
+  props: {
+    cardProductsList: {
+      type: Array,
     },
   },
 
