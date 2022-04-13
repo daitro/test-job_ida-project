@@ -3,17 +3,20 @@
     <h1 class="header">Добавление продукта</h1>
     <div class="main__container">
       <aside class="main__sidebar">
-        <SideBar :cardProductsList="cardProductsList" />
+        <SideBar
+          :cardProductsList="cardProductsList"
+          @addProduct="onAddProduct"
+          :sortType="sortType"
+          @onChangeSortType="sortType = $event"
+        />
       </aside>
       <div class="products-list">
         <div class="row">
           <CardProduct
-            v-for="cardProduct in cardProductsList"
+            v-for="cardProduct in sortCardProductsList"
             :key="cardProduct.id"
             :product="cardProduct"
             :cardProductsList="cardProductsList"
-            @mouseover="cardProduct.showIconDelete = true"
-            @mouseleave="cardProduct.showIconDelete = false"
             @delete="deleteProductCard(cardProduct.id)"
           />
         </div>
@@ -27,6 +30,10 @@ import SideBar from "../components/SideBar.vue";
 import CardProduct from "../components/CardProduct.vue";
 
 export default {
+  components: {
+    SideBar,
+    CardProduct,
+  },
   data() {
     return {
       cardProductsList: [
@@ -54,21 +61,76 @@ export default {
           img: "/img/camera.jpg",
           showIconDelete: false,
         },
+        {
+          id: 3,
+          title: "Наименование товара",
+          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          price: 10000,
+          img: "/img/camera.jpg",
+          showIconDelete: false,
+        },
+        {
+          id: 4,
+          title: "Наименование товара",
+          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          price: 1000,
+          img: "/img/camera.jpg",
+          showIconDelete: false,
+        },
+        {
+          id: 5,
+          title: "Наименование товара",
+          text: "Довольно-таки интересное описание товара в несколько строк",
+          price: 20000,
+          img: "/img/camera.jpg",
+          showIconDelete: false,
+        },
       ],
+      sortType: "",
     };
   },
-
   methods: {
     deleteProductCard(id) {
-      return (this.cardProductsList = this.cardProductsList.filter(
+      this.cardProductsList = this.cardProductsList.filter(
         (elem) => elem.id !== id
-      ));
+      );
+
+      localStorage.setItem("items", JSON.stringify(this.cardProductsList));
+    },
+    onAddProduct(product) {
+      this.cardProductsList.push(product);
+
+      localStorage.setItem("items", JSON.stringify(this.cardProductsList));
+    },
+  },
+  computed: {
+    sortCardProductsList() {
+      if (this.sortType === "По возрастанию цены") {
+        return [...this.cardProductsList].sort((a, b) => a.price - b.price);
+      }
+
+      if (this.sortType === "По убыванию цены") {
+        return [...this.cardProductsList].sort((a, b) => b.price - a.price);
+      }
+
+      if (this.sortType === "По наименованию") {
+        return [...this.cardProductsList].sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+      }
+
+      return this.cardProductsList;
     },
   },
 
-  components: {
-    SideBar,
-    CardProduct,
+  created() {
+    const productFromLS = localStorage.getItem("items");
+
+    if (productFromLS) {
+      this.cardProductsList = JSON.parse(productFromLS);
+    } else {
+      localStorage.setItem("items", JSON.stringify(this.cardProductsList));
+    }
   },
 };
 </script>

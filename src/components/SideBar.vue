@@ -43,6 +43,14 @@
         @click.native="addNewProductCard"
       />
     </div>
+    <div class="select">
+      <GuiSelect
+        :value="sortType"
+        :options="selectSort.options"
+        :placeholder="selectSort.placeholder"
+        @input="$emit('onChangeSortType', $event)"
+      />
+    </div>
   </section>
 </template>
 
@@ -50,9 +58,24 @@
 import GuiInput from "../components/Gui/GuiInput.vue";
 import GuiTextArea from "../components/Gui/GuiTextArea.vue";
 import GuiButton from "../components/Gui/GuiButton.vue";
+import GuiSelect from "../components/Gui/GuiSelect.vue";
 import { nanoid } from "nanoid";
 
 export default {
+  components: {
+    GuiInput,
+    GuiTextArea,
+    GuiButton,
+    GuiSelect,
+  },
+  props: {
+    cardProductsList: {
+      type: Array,
+    },
+    sortType: {
+      type: String,
+    },
+  },
   data() {
     return {
       nameProduct: {
@@ -82,9 +105,13 @@ export default {
         requiredField: true,
         error: false,
       },
+      selectSort: {
+        value: "",
+        options: ["По возрастанию цены", "По убыванию цены", "По наименованию"],
+        placeholder: "Выберите сортировку",
+      },
     };
   },
-
   computed: {
     isSubmitDisabled() {
       return (
@@ -94,35 +121,24 @@ export default {
       );
     },
   },
-
   methods: {
     addNewProductCard() {
-      this.cardProductsList.push({
+      const newProduct = {
         id: nanoid(),
         title: this.nameProduct.value,
         text: this.descriptionProduct.value,
         price: Number(this.priceProduct.value),
         img: this.imgProduct.value,
         showIconDelete: false,
-      });
+      };
+
+      this.$emit("addProduct", newProduct);
 
       this.nameProduct.value = "";
       this.descriptionProduct.value = "";
       this.imgProduct.value = "";
       this.priceProduct.value = "";
     },
-  },
-
-  props: {
-    cardProductsList: {
-      type: Array,
-    },
-  },
-
-  components: {
-    GuiInput,
-    GuiTextArea,
-    GuiButton,
   },
 };
 </script>
@@ -136,5 +152,9 @@ export default {
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
+}
+
+.select {
+  margin: 24px 0;
 }
 </style>

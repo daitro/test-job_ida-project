@@ -2,21 +2,22 @@
   <transition name="slide-fade">
     <div
       class="card-wrapper col"
-      @mouseover="onMouseover"
-      @mouseleave="onMouseleave"
+      @mouseover="showIconDelete = true"
+      @mouseleave="showIconDelete = false"
     >
       <div class="card-product">
-        <img
-          class="card-product__icon"
-          src="/icons/delete.svg"
-          v-if="product.showIconDelete"
-          @click="onClick"
-        />
-        <img
+        <transition name="fade">
+          <img
+            class="card-product__icon"
+            src="/icons/delete.svg"
+            v-if="showIconDelete"
+            @click="onClick"
+          />
+        </transition>
+        <div
           class="card-product__img"
-          :src="`${product.img}`"
-          alt="Изображение"
-        />
+          :style="{ 'background-image': `url(${product.img})` }"
+        ></div>
         <div class="card-product__description">
           <h2 class="card-product__title">{{ product.title }}</h2>
           <p class="card-product__text">
@@ -31,24 +32,22 @@
 
 <script>
 export default {
-  methods: {
-    onMouseover() {
-      this.$emit("mouseover");
-    },
-    onMouseleave() {
-      this.$emit("mouseleave");
-    },
-    onClick() {
-      this.$emit("delete");
-    },
+  data() {
+    return {
+      showIconDelete: false,
+    };
   },
-
   props: {
     cardProductsList: {
       type: Array,
     },
     product: {
       type: Object,
+    },
+  },
+  methods: {
+    onClick() {
+      this.$emit("delete");
     },
   },
 };
@@ -87,7 +86,10 @@ export default {
   }
 
   &__img {
-    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
   }
 
   &__title {
@@ -95,6 +97,11 @@ export default {
     font-size: 20px;
     line-height: 25px;
     margin: 16px 0;
+    height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__text {
@@ -145,6 +152,18 @@ export default {
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateX(10px);
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 0.3s;
+}
+
+.fade-leave-active {
+  transition: all 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

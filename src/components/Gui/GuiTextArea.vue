@@ -33,7 +33,6 @@ export default {
       type: Boolean,
     },
   },
-
   methods: {
     changeInput(event) {
       this.$emit("input", event.target.value);
