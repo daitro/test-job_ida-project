@@ -9,14 +9,20 @@
         <img
           class="card-product__icon"
           src="/icons/delete.svg"
-          v-if="showIconDelete"
+          v-if="product.showIconDelete"
           @click="onClick"
         />
-        <img class="card-product__img" :src="`${img}`" alt="Изображение" />
+        <img
+          class="card-product__img"
+          :src="`${product.img}`"
+          alt="Изображение"
+        />
         <div class="card-product__description">
-          <h2 class="card-product__title">{{ title }}</h2>
-          <p class="card-product__text">{{ text }}</p>
-          <p class="card-product__price">{{ price }} руб.</p>
+          <h2 class="card-product__title">{{ product.title }}</h2>
+          <p class="card-product__text">
+            {{ product.text }}
+          </p>
+          <p class="card-product__price">{{ product.price }} руб.</p>
         </div>
       </div>
     </div>
@@ -38,23 +44,11 @@ export default {
   },
 
   props: {
-    title: {
-      type: String,
-    },
-    text: {
-      type: String,
-    },
-    price: {
-      type: String,
-    },
-    img: {
-      type: String,
-    },
-    showIconDelete: {
-      type: Boolean,
-    },
     cardProductsList: {
       type: Array,
+    },
+    product: {
+      type: Object,
     },
   },
 };
@@ -107,7 +101,12 @@ export default {
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
+    height: 80px;
     color: #3f3f3f;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__price {

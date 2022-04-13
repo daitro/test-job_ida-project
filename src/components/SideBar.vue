@@ -101,7 +101,7 @@ export default {
         id: nanoid(),
         title: this.nameProduct.value,
         text: this.descriptionProduct.value,
-        price: this.priceProduct.value,
+        price: Number(this.priceProduct.value),
         img: this.imgProduct.value,
         showIconDelete: false,
       });

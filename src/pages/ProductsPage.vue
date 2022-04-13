@@ -10,11 +10,7 @@
           <CardProduct
             v-for="cardProduct in cardProductsList"
             :key="cardProduct.id"
-            :title="cardProduct.title"
-            :text="cardProduct.text"
-            :price="cardProduct.price"
-            :img="cardProduct.img"
-            :showIconDelete="cardProduct.showIconDelete"
+            :product="cardProduct"
             :cardProductsList="cardProductsList"
             @mouseover="cardProduct.showIconDelete = true"
             @mouseleave="cardProduct.showIconDelete = false"
@@ -38,7 +34,23 @@ export default {
           id: 0,
           title: "Наименование товара",
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
+          price: 10000,
+          img: "/img/camera.jpg",
+          showIconDelete: false,
+        },
+        {
+          id: 1,
+          title: "Наименование товара",
+          text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          price: 1000,
+          img: "/img/camera.jpg",
+          showIconDelete: false,
+        },
+        {
+          id: 2,
+          title: "Наименование товара",
+          text: "Довольно-таки интересное описание товара в несколько строк",
+          price: 20000,
           img: "/img/camera.jpg",
           showIconDelete: false,
         },
