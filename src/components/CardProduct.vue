@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card-product {
   transition: box-shadow 0.5s;
   display: flex;
