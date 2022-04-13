@@ -43,7 +43,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: 10000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
         {
           id: 1,
@@ -51,7 +50,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: 1000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
         {
           id: 2,
@@ -59,7 +57,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк",
           price: 20000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
         {
           id: 3,
@@ -67,7 +64,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: 10000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
         {
           id: 4,
@@ -75,7 +71,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: 1000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
         {
           id: 5,
@@ -83,7 +78,6 @@ export default {
           text: "Довольно-таки интересное описание товара в несколько строк",
           price: 20000,
           img: "/img/camera.jpg",
-          showIconDelete: false,
         },
       ],
       sortType: "",
