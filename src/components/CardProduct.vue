@@ -59,7 +59,6 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 326px;
   width: 100%;
   margin-bottom: 16px;
   background: #fffefb;
@@ -96,6 +95,7 @@ export default {
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;
+    color: #3f3f3f;
     margin: 16px 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;

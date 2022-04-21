@@ -1,16 +1,25 @@
 <template>
   <main class="main">
-    <h1 class="header">Добавление товара</h1>
+    <div class="header-block">
+      <h1 class="header">Добавление товара</h1>
+      <GuiSelect
+        :options="selectSort.options"
+        :placeholder="selectSort.placeholder"
+        v-model="sortType"
+      />
+    </div>
     <div class="main__container">
-      <aside class="main__sidebar">
+      <aside
+        :class="{ main__sidebar: true, 'main__sidebar--fixed': sideBarFixed }"
+      >
         <SideBar
           :cardProductsList="cardProductsList"
           @addProduct="onAddProduct"
-          :sortType="sortType"
-          @onChangeSortType="sortType = $event"
         />
       </aside>
-      <div class="products-list">
+      <div
+        :class="{ 'products-list': true, 'products-list--fixed': sideBarFixed }"
+      >
         <div class="row">
           <CardProduct
             v-for="cardProduct in sortCardProductsList"
@@ -28,11 +37,13 @@
 <script>
 import SideBar from "../components/SideBar.vue";
 import CardProduct from "../components/CardProduct.vue";
+import GuiSelect from "../components/Gui/GuiSelect.vue";
 
 export default {
   components: {
     SideBar,
     CardProduct,
+    GuiSelect,
   },
   data() {
     return {
@@ -81,6 +92,12 @@ export default {
         },
       ],
       sortType: "",
+      selectSort: {
+        value: "",
+        options: ["По возрастанию цены", "По убыванию цены", "По наименованию"],
+        placeholder: "По умолчанию",
+      },
+      sideBarFixed: false,
     };
   },
   methods: {
@@ -95,6 +112,10 @@ export default {
       this.cardProductsList.push(product);
 
       localStorage.setItem("items", JSON.stringify(this.cardProductsList));
+    },
+    onScrollHandler(event) {
+      let windowScrollTop = event.target.documentElement.scrollTop;
+      this.sideBarFixed = windowScrollTop > 68;
     },
   },
   computed: {
@@ -116,7 +137,6 @@ export default {
       return this.cardProductsList;
     },
   },
-
   created() {
     const productFromLS = localStorage.getItem("items");
 
@@ -126,6 +146,14 @@ export default {
       localStorage.setItem("items", JSON.stringify(this.cardProductsList));
     }
   },
+  mounted() {
+    window.document.addEventListener("scroll", this.onScrollHandler, {
+      passive: true,
+    });
+  },
+  beforeDestroyed() {
+    window.document.removeEventListener("scroll", this.onScrollHandler);
+  },
 };
 </script>
 
@@ -133,18 +161,34 @@ export default {
 .main {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 36px;
+  padding: 32px;
   background: rgba(255, 254, 251, 0.8);
+
+  &__container {
+    display: block;
+
+    @media screen and(min-width:687px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
 
   &__sidebar {
     position: static;
+    flex: none;
     max-width: 332px;
     width: 100%;
 
-    @media screen and(min-width:687px) {
+    &--fixed {
       position: fixed;
+      top: 24px;
     }
   }
+}
+
+.header-block {
+  display: flex;
+  justify-content: space-between;
 }
 
 .header {
@@ -152,11 +196,21 @@ export default {
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 16px;
+  margin-right: 16px;
 }
 
 .products-list {
+  margin-top: 24px;
+
   @media screen and(min-width:687px) {
-    margin-left: 350px;
+    margin-left: 16px;
+    margin-top: 0;
+  }
+
+  &--fixed {
+    @media screen and(min-width:687px) {
+      margin-left: 348px;
+    }
   }
 }
 

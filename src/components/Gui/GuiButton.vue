@@ -1,10 +1,5 @@
 <template>
-  <input
-    class="button"
-    :disabled="disabled"
-    type="submit"
-    value="Добавить товар"
-  />
+  <button class="button" :disabled="disabled">Добавить товар</button>
 </template>
 
 <script>
@@ -26,6 +21,9 @@ export default {
   color: white;
   padding: 10px 16px;
   margin-top: 8px;
+  font-family: "Inter-regular";
+  font-size: 12px;
+  line-height: 15px;
   cursor: pointer;
 
   &:hover {
