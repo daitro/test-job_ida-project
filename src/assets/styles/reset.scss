@@ -144,6 +144,7 @@ input {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  font-family: inherit;
 }
 
 input:focus-visible {
@@ -152,8 +153,8 @@ input:focus-visible {
 
 select,
 textarea {
-  font-family: inherit;
   outline: none;
   border: none;
   resize: none;
+  font-family: inherit;
 }

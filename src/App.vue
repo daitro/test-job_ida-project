@@ -17,6 +17,6 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "SourceSansPro";
 }
 </style>

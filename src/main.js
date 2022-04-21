@@ -4,6 +4,7 @@ import VueMask from "v-mask";
 import "./registerServiceWorker";
 
 import "./assets/styles/reset.scss";
+import "./assets/font/index.scss";
 
 Vue.use(VueMask);
 Vue.config.productionTip = false;
