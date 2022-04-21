@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <h1 class="header">Добавление продукта</h1>
+    <h1 class="header">Добавление товара</h1>
     <div class="main__container">
       <aside class="main__sidebar">
         <SideBar
@@ -151,16 +151,18 @@ export default {
   font-weight: 600;
   font-size: 28px;
   line-height: 35px;
+  margin-bottom: 16px;
 }
 
 .products-list {
   @media screen and(min-width:687px) {
-    margin-left: 356px;
+    margin-left: 350px;
   }
 }
 
 .row {
-  margin: 0 -12px 0 -12px;
+  max-width: 1028px;
+  margin: 0 -8px 0 -8px;
   display: flex;
   flex-wrap: wrap;
 }

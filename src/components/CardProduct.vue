@@ -97,7 +97,6 @@ export default {
     font-size: 20px;
     line-height: 25px;
     margin: 16px 0;
-    height: 50px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -126,7 +125,7 @@ export default {
 }
 
 .card-wrapper {
-  padding: 0 12px 0 12px;
+  padding: 0 8px 0 8px;
 }
 
 .col {
