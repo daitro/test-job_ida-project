@@ -35,15 +35,19 @@ export default {
 
 <style lang="scss" scoped>
 .select {
-  width: 100%;
-  border: 1px solid rgb(206, 206, 206);
-  padding: 8px;
-  color: rgb(130, 130, 130);
+  width: 122px;
+  height: 36px;
+  background: #fffefb;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px 24px 10px 16px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #b4b4b4;
   cursor: pointer;
-
-  &[disabled] {
-    background-color: rgba(159, 159, 159, 0.352);
-  }
+  appearance: none;
+  background: url("../../../public/icons/arrow_drop-down.svg") no-repeat;
+  background-position: 90% 50%;
 
   &__option {
     color: rgb(53, 53, 53);

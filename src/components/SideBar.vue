@@ -43,14 +43,6 @@
         @click.native="addNewProductCard"
       />
     </div>
-    <div class="select">
-      <GuiSelect
-        :value="sortType"
-        :options="selectSort.options"
-        :placeholder="selectSort.placeholder"
-        @input="$emit('onChangeSortType', $event)"
-      />
-    </div>
   </section>
 </template>
 
@@ -58,7 +50,7 @@
 import GuiInput from "../components/Gui/GuiInput.vue";
 import GuiTextArea from "../components/Gui/GuiTextArea.vue";
 import GuiButton from "../components/Gui/GuiButton.vue";
-import GuiSelect from "../components/Gui/GuiSelect.vue";
+
 import { nanoid } from "nanoid";
 
 export default {
@@ -66,14 +58,10 @@ export default {
     GuiInput,
     GuiTextArea,
     GuiButton,
-    GuiSelect,
   },
   props: {
     cardProductsList: {
       type: Array,
-    },
-    sortType: {
-      type: String,
     },
   },
   data() {
@@ -104,11 +92,6 @@ export default {
         label: "Цена товара",
         requiredField: true,
         error: false,
-      },
-      selectSort: {
-        value: "",
-        options: ["По возрастанию цены", "По убыванию цены", "По наименованию"],
-        placeholder: "Выберите сортировку",
       },
     };
   },
