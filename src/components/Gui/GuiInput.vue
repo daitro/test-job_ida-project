@@ -1,13 +1,10 @@
 <template>
   <div class="input">
-    <label
-      :class="{ input__label: true, 'input__label--require': required }"
-      for=""
-    >
+    <label :class="{ input__label: true, 'input__label--require': required }">
       {{ label }}
     </label>
     <input
-      class="input__field"
+      :class="{ input__field: true, 'input__field--error': error }"
       type="text"
       :placeholder="placeholder"
       :value="value"
@@ -64,8 +61,13 @@ export default {
     background: #fffefb;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    padding: 8px 12px;
-    line-height: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 15px;
+
+    &--error {
+      border: 1px solid #ff8484;
+    }
 
     &::-webkit-input-placeholder {
       color: #b4b4b4;
@@ -76,13 +78,16 @@ export default {
     position: absolute;
     top: 56px;
     font-size: 8px;
-    line-height: 20px;
+    font-weight: 400;
+    line-height: 10px;
     color: #ff8484;
   }
 
   &__label {
     font-size: 10px;
-    line-height: 20px;
+    line-height: 12px;
+    color: #49485e;
+    margin-bottom: 4px;
 
     &--require {
       position: relative;

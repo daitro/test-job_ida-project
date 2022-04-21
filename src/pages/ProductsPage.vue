@@ -189,6 +189,8 @@ export default {
 .header-block {
   display: flex;
   justify-content: space-between;
+  max-width: 1356px;
+  width: 100%;
 }
 
 .header {

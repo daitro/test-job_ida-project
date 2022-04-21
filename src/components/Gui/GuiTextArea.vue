@@ -1,9 +1,6 @@
 <template>
   <div class="input">
-    <label
-      :class="{ input__label: true, 'input__label--require': required }"
-      for=""
-    >
+    <label :class="{ input__label: true, 'input__label--require': required }">
       {{ label }}
     </label>
     <textarea
@@ -50,6 +47,7 @@ export default {
   &__label {
     font-size: 10px;
     line-height: 20px;
+    color: #49485e;
 
     &--require {
       &::after {
@@ -64,8 +62,9 @@ export default {
     background: #fffefb;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    padding: 8px 12px;
-    line-height: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 15px;
 
     &::-webkit-input-placeholder {
       color: #b4b4b4;
