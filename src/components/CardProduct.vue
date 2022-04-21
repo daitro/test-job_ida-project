@@ -75,8 +75,8 @@ export default {
   &__icon {
     display: block;
     position: absolute;
-    right: -18px;
-    top: -18px;
+    right: -12px;
+    top: -12px;
     cursor: pointer;
   }
 
@@ -105,7 +105,7 @@ export default {
 
   &__text {
     font-weight: 400;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 20px;
     height: 80px;
     color: #3f3f3f;
