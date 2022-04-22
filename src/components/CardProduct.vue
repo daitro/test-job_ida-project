@@ -23,7 +23,7 @@
           <p class="card-product__text">
             {{ product.text }}
           </p>
-          <p class="card-product__price">{{ product.price }} руб.</p>
+          <p class="card-product__price">{{ formattedPrice }} руб.</p>
         </div>
       </div>
     </div>
@@ -48,6 +48,11 @@ export default {
   methods: {
     onClick() {
       this.$emit("delete");
+    },
+  },
+  computed: {
+    formattedPrice() {
+      return new Intl.NumberFormat("ru-RU").format(this.product.price);
     },
   },
 };

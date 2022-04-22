@@ -115,7 +115,7 @@ export default {
     },
     onScrollHandler(event) {
       let windowScrollTop = event.target.documentElement.scrollTop;
-      this.sideBarFixed = windowScrollTop > 68;
+      this.sideBarFixed = windowScrollTop > 59;
     },
   },
   computed: {
