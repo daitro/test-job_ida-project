@@ -1,6 +1,6 @@
 <template>
   <select class="select" :value="value" @change="onChange">
-    <option disabled value="" selected>{{ placeholder }}</option>
+    <option value="" selected>{{ placeholder }}</option>
     <option
       class="select__option"
       v-for="item of options"

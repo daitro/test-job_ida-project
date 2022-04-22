@@ -59,11 +59,6 @@ export default {
     GuiTextArea,
     GuiButton,
   },
-  props: {
-    cardProductsList: {
-      type: Array,
-    },
-  },
   data() {
     return {
       nameProduct: {

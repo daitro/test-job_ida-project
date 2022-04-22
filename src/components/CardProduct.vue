@@ -1,19 +1,12 @@
 <template>
   <transition name="slide-fade">
-    <div
-      class="card-wrapper col"
-      @mouseover="showIconDelete = true"
-      @mouseleave="showIconDelete = false"
-    >
+    <div class="card-wrapper col">
       <div class="card-product">
-        <transition name="fade">
-          <img
-            class="card-product__icon"
-            src="/icons/delete.svg"
-            v-if="showIconDelete"
-            @click="onClick"
-          />
-        </transition>
+        <img
+          class="card-product__icon"
+          src="/icons/delete.svg"
+          @click="onClick"
+        />
         <div
           class="card-product__img"
           :style="{ 'background-image': `url(${product.img})` }"
@@ -32,11 +25,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      showIconDelete: false,
-    };
-  },
   props: {
     cardProductsList: {
       type: Array,
@@ -77,11 +65,15 @@ export default {
       0px 6px 10px rgba(0, 0, 0, 0.1);
   }
 
-  &__icon {
+  &:hover > .card-product__icon {
     display: block;
+  }
+
+  &__icon {
+    display: none;
     position: absolute;
     right: -12px;
-    top: -12px;
+    top: -10px;
     cursor: pointer;
   }
 
@@ -157,18 +149,6 @@ export default {
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateX(10px);
-  opacity: 0;
-}
-.fade-enter-active {
-  transition: all 0.3s;
-}
-
-.fade-leave-active {
-  transition: all 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to {
   opacity: 0;
 }
 </style>
