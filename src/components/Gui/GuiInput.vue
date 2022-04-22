@@ -54,7 +54,6 @@ export default {
 .input {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
   position: relative;
 
   &__field {
@@ -64,6 +63,7 @@ export default {
     padding: 10px 16px;
     font-size: 12px;
     line-height: 15px;
+    margin: 4px 0 16px;
 
     &--error {
       border: 1px solid #ff8484;
@@ -87,7 +87,6 @@ export default {
     font-size: 10px;
     line-height: 12px;
     color: #49485e;
-    margin-bottom: 4px;
 
     &--require {
       position: relative;

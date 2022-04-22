@@ -86,6 +86,7 @@ export default {
 
   &__img {
     height: 200px;
+    border-radius: 4px 4px 0 0;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
